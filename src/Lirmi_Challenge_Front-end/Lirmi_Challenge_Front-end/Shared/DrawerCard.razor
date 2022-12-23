@@ -1,0 +1,40 @@
+﻿
+    <MudCard Style="@CardStyles" Elevation="0" Outlined>
+        <MudCardContent Class="pl-2">
+            <MudText Typo="Typo.subtitle2" Class="fw-bold mb-2" Style="@TitleStyles">@Title</MudText>
+            <MudText Typo="Typo.body2" Class="mb-2" Style="@SubTitleStyles">@SubTitle</MudText>
+            <div class="d-flex justify-content-between align-items-center">
+                <MudText Typo="Typo.body2" Style="@SubTitleStyles">@Time min</MudText>
+                 
+                <MudButton 
+                    Variant="Variant.Filled" 
+                    Size="Size.Small"
+                    Class="px-1"
+                    Style="@SelectorStyles"
+                    EndIcon="@Icons.Filled.KeyboardArrowDown"
+                    DisableElevation
+                >
+                    <MudText Typo="Typo.caption" Class="ml-2" Style="font-weight: 600">@SelectorName</MudText>
+                </MudButton>
+            </div>
+        </MudCardContent>
+    </MudCard>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string SubTitle { get; set; }
+    [Parameter]
+    public string Time { get; set; }
+    [Parameter]
+    public string SelectorName { get; set; }
+    [Parameter]
+    public string CardStyles { get; set; }
+    [Parameter]
+    public string TitleStyles { get; set; }
+    [Parameter]
+    public string SubTitleStyles { get; set; }
+    [Parameter]
+    public string SelectorStyles { get; set; }
+}

@@ -7,4 +7,12 @@
     <RootNamespace>Lirmi_Challenge_Front_end</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Shared\Drawer.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MudBlazor" Version="6.1.6" />
+  </ItemGroup>
+
 </Project>
