@@ -43,7 +43,7 @@
                     <MudContainer Class="px-8" MaxWidth="MaxWidth.False">
                             <MudGrid>
                                 <MudItem xs="12" sm="12" md="12" Class="py-1">
-                                    <MudTextField @bind-Value="TextValue" Label="Nombre de la actividad" Variant="Variant.Outlined"></MudTextField>
+                                    <MudTextField @bind-Value="TextValue1" Label="Nombre de la actividad" Variant="Variant.Outlined"></MudTextField>
                                 </MudItem>
                                 <MudItem xs="12" sm="12" md="12" Class="py-1">
                                     <MudSelect T="string" Label="Recurso" Variant="Variant.Outlined">
@@ -68,19 +68,19 @@
                                                 <MudRadioGroup @bind-SelectedOption="@Placement">
                                                     <MudRadio class="radio-buttons" Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
                                                         <div class="d-flex">
-                                                            <MudTextField @bind-Value="TextValue" Label="Alternativa 1" Variant="Variant.Outlined"></MudTextField>
+                                                            <MudTextField @bind-Value="TextValue2" Label="Alternativa 1" Variant="Variant.Outlined"></MudTextField>
                                                             <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
                                                         </div>
                                                     </MudRadio>
                                                     <MudRadio class="radio-buttons" Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
                                                         <div class="d-flex">
-                                                            <MudTextField @bind-Value="TextValue" Label="Alternativa 2" Variant="Variant.Outlined"></MudTextField>
+                                                            <MudTextField @bind-Value="TextValue3" Label="Alternativa 2" Variant="Variant.Outlined"></MudTextField>
                                                             <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
                                                         </div>
                                                     </MudRadio>
                                                     <MudRadio class="radio-buttons" Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
                                                         <div class="d-flex">
-                                                            <MudTextField @bind-Value="TextValue" Label="Alternativa 3" Variant="Variant.Outlined"></MudTextField>
+                                                            <MudTextField @bind-Value="TextValue4" Label="Alternativa 3" Variant="Variant.Outlined"></MudTextField>
                                                             <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
                                                         </div>
                                                     </MudRadio>
@@ -95,19 +95,17 @@
                                             <MudCard class="mt-2" Style="padding: 10px;">
                                                 @if (Basic_Switch1)
                                                 {
-                                                    <div>
-                                                        <MudTextField @bind-Value="TextValue" Label="Pistas" Variant="Variant.Outlined" Lines="2"></MudTextField>
-                                                    </div>
+                                                        <MudTextField @bind-Value="TextValue5" Label="Pistas" Variant="Variant.Outlined" Lines="2"></MudTextField>
                                                 }
 
                                                 @if (Basic_Switch2)
                                                 {
-                                                        <MudTextField @bind-Value="TextValue" Label="Solucionario" Variant="Variant.Outlined" Lines="2"></MudTextField>
+                                                        <MudTextField @bind-Value="TextValue6" Label="Solucionario" Variant="Variant.Outlined" Lines="2"></MudTextField>
                                                 }
 
                                                 @if (Basic_Switch3)
                                                 {
-                                                        <MudTextField @bind-Value="TextValue" Label="Personalizar mensaje" Variant="Variant.Outlined" Lines="2"></MudTextField>
+                                                        <MudTextField @bind-Value="TextValue7" Label="Personalizar mensaje" Variant="Variant.Outlined" Lines="2"></MudTextField>
                                                 }
                                             </MudCard>
                                         </MudItem>
@@ -164,7 +162,13 @@
     public bool Basic_Switch1 { get; set; }
     public bool Basic_Switch2 { get; set; }
     public bool Basic_Switch3 { get; set; }
-    public string TextValue { get; set; }
+    public string TextValue1 { get; set; }
+    public string TextValue2 { get; set; }
+    public string TextValue3 { get; set; }
+    public string TextValue4 { get; set; }
+    public string TextValue5 { get; set; }
+    public string TextValue6 { get; set; }
+    public string TextValue7 { get; set; }
     public Placement Placement { get; set; } = Placement.Right;
 
 
