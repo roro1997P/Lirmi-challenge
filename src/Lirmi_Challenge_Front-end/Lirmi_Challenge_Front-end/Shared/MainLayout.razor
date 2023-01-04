@@ -11,144 +11,152 @@
     <MudLayout>
         <Navbar />
 
-        <MudDrawer Height="100vh" Anchor="Anchor.Left" Open="true" Elevation="0" Variant="@DrawerVariant.Persistent" Style="background-color: #EEEEEE;">
-            <MudDrawerHeader Style="display: inline-flex; align-items: center; justify-content: space-between">
-                <MudText Typo="Typo.h6" Style="color: black;" Class="fw-bold">Experiencias</MudText>
-                <MudIconButton Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Filled.Add" Style="color: black; background-color: white" Class="ml-2" />
-            </MudDrawerHeader>
-
-                @{int i = 1;}
-                @foreach (DrawerItem item in drawerItems)
-                {
-                    <div class="d-flex justify-content-evenly mb-4">
-                        <strong style="font-size: 16px">@(i++)</strong>
-                        <DrawerCard 
-                            CardStyles="@item.CardStyles"
-                            TitleStyles="@item.TitleStyles"
-                            SubTitleStyles="@item.SubTitleStyles"
-                            SelectorStyles="@item.SelectorStyles"
-                            Title="@item.Title"
-                            SubTitle="@item.SubTitle"
-                            Time="@item.Time"
-                            SelectorName="@item.SelectorName" 
-                        />
+            <MudGrid Class="mt-0">
+                <MudItem Class="main-content-section" xs="5" sm="4" md="3" lg="3" xl="3" Style="background-color: #EEEEEE;">
+                    <div class="aside-left-header">
+                        <MudText Typo="Typo.h6" Style="color: black;" Class="fw-bold">Experiencias</MudText>
+                        <MudIconButton Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Filled.Add" Style="color: black; background-color: white" Class="ml-2" />
                     </div>
-                }
-        </MudDrawer>
 
-        <MudDrawer Width="23%" Height="auto" Anchor="Anchor.Right" Open="true" Elevation="0" Variant="@DrawerVariant.Persistent" Style="background-color: #EEEEEE">
-            <MudList Clickable="false" Dense="false" DisableGutters="false" Style="height: 100vh;">
-                <MudListItem>
-                    <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-bold">Ayuda antes de responder</MudText>
-                    <MudGrid>
-                        <MudItem xs="8" md="8" lg="8" xl="8" xxl="8" Class="d-flex align-items-center">
-                            <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-normal">Pistas</MudText>
-                        </MudItem>
-                        <MudItem xs="4" md="4" lg="4" xl="4" xxl="4">
-                            <MudSwitch @bind-Checked="@Basic_Switch1" Color="Color.Primary" />
-                        </MudItem>
-                    </MudGrid>
-                </MudListItem>
-                <hr style="margin: 0px auto; width: 90%;" />
-                <MudListItem>
-                    <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-bold">Retroalimentación de respuesta incorrecta</MudText>
-                    <MudGrid>
-                        <MudItem xs="8" md="8" lg="8" xl="8" xxl="8" Class="d-flex align-items-center">
-                            <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-normal">Solucionario</MudText>
-                        </MudItem>
-                        <MudItem xs="4" md="4" lg="4" xl="4" xxl="4">
-                            <MudSwitch @bind-Checked="@Basic_Switch2" Color="Color.Primary" />
-                        </MudItem>
-                    </MudGrid>
-                </MudListItem>
-                <hr style="margin: 0px auto; width: 90%;" />
-                <MudListItem>
-                    <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-bold">Retroalimentación de respuesta correcta</MudText>
-                    <MudGrid>
-                        <MudItem xs="8" md="8" lg="8" xl="8" xxl="8" Class="d-flex align-items-center">
-                            <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-normal">Personalizar mensaje</MudText>
-                        </MudItem>
-                        <MudItem xs="4" md="4" lg="4" xl="4" xxl="4">
-                            <MudSwitch @bind-Checked="@Basic_Switch3" Color="Color.Primary" />
-                        </MudItem>
-                    </MudGrid>
-                </MudListItem>
-            </MudList>
-        </MudDrawer>
-        <MudMainContent Style="padding-top: 20px;">
-            <MudContainer Class="px-8" MaxWidth="MaxWidth.False">
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (DrawerItem item in drawerItems)
+                    {
+                                <div class="d-flex justify-content-evenly mb-4 cursor-pointer" @onclick="@( () => selectCardItem(item))">
+                                <strong style="font-size: 16px">@(i++)</strong>
+                                <DrawerCard
+                                    TitleStyles="@item.TitleStyles"
+                                    SubTitleStyles="@item.SubTitleStyles"
+                                    SelectorStyles="@item.SelectorStyles"
+                                    Title="@item.Title"
+                                    SubTitle="@item.SubTitle"
+                                    Time="@item.Time"
+                                    SelectorName="@item.SelectorName"
+                                    Selected="@item.Selected"
+                                />
+                            </div>
+                    }
+                </MudItem>
 
-                <MudDrawerContainer>
-                    <MudGrid>
-                        <MudItem xs="12" sm="12" md="12" Class="py-1">
-                            <MudTextField @bind-Value="TextValue" Label="Nombre de la actividad" Variant="Variant.Outlined"></MudTextField>
-                        </MudItem>
-                        <MudItem xs="12" sm="12" md="12" Class="py-1">
-                            <MudSelect T="string" Label="Recurso" Variant="Variant.Outlined">
-                                <MudSelectItem Value="@("Recurso1")" />
-                                <MudSelectItem Value="@("Recurso2")" />
-                                <MudSelectItem Value="@("Recurso3")" />
-                            </MudSelect>
-                        </MudItem>
-                        <MudItem xs="12" sm="12" md="12" Class="py-1">
-                            <MudTextField T="string" Label="Enunciado" Variant="Variant.Outlined" Lines="4" />
-                        </MudItem>
-                        <MudItem xs="12" sm="12" md="12" Class="py-1" Style="margin-top: 10px;">
-                            <MudCard class="mt-2">
-                                <MudGrid>
-                                    <MudItem xs="6" sm="6" md="6" lg="6" xxl="6" Class="pl-5">
-                                        <MudSelect Margin="Margin.Dense" Dense="true" T="string" Label="Actividad" Variant="Variant.Outlined">
-                                            <MudSelectItem Value="@("Selección múltiple")" />
-                                        </MudSelect>
-                                    </MudItem>
+                <MudItem Class="main-content-section mt-2" xs="5" sm="5" md="6" lg="6" xl="6">
+                    <MudContainer Class="px-8" MaxWidth="MaxWidth.False">
+                            <MudGrid>
+                                <MudItem xs="12" sm="12" md="12" Class="py-1">
+                                    <MudTextField @bind-Value="TextValue" Label="Nombre de la actividad" Variant="Variant.Outlined"></MudTextField>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" Class="py-1">
+                                    <MudSelect T="string" Label="Recurso" Variant="Variant.Outlined">
+                                        <MudSelectItem Value="@("Recurso1")" />
+                                        <MudSelectItem Value="@("Recurso2")" />
+                                        <MudSelectItem Value="@("Recurso3")" />
+                                    </MudSelect>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" Class="py-1">
+                                    <MudTextField T="string" Label="Enunciado" Variant="Variant.Outlined" Lines="4" />
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" Class="py-1" Style="margin-top: 10px;">
+                                    <MudCard class="mt-2">
+                                        <MudGrid>
+                                            <MudItem xs="6" sm="6" md="6" lg="6" xxl="6" Class="pl-5">
+                                                <MudSelect Margin="Margin.Dense" Dense="true" T="string" Label="Actividad" Variant="Variant.Outlined">
+                                                    <MudSelectItem Value="@("Selección múltiple")" />
+                                                </MudSelect>
+                                            </MudItem>
 
-                                    <MudItem xs="12" md="12" Class="pl-5">
-                                        <MudRadioGroup @bind-SelectedOption="@Placement">
-                                            <MudRadio Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
-                                                <div class="d-flex">
-                                                    <MudTextField Margin="Margin.Dense" @bind-Value="TextValue" Label="Alternativa 1" Variant="Variant.Outlined"></MudTextField>
-                                                    <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
-                                                </div>
-                                            </MudRadio>
-                                            <MudRadio Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
-                                                <div class="d-flex">
-                                                    <MudTextField Margin="Margin.Dense" @bind-Value="TextValue" Label="Alternativa 2" Variant="Variant.Outlined"></MudTextField>
-                                                    <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
-                                                </div>
-                                            </MudRadio>
-                                            <MudRadio Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
-                                                <div class="d-flex">
-                                                    <MudTextField Margin="Margin.Dense" @bind-Value="TextValue" Label="Alternativa 3" Variant="Variant.Outlined"></MudTextField>
-                                                    <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
-                                                </div>
-                                            </MudRadio>
-                                        </MudRadioGroup>
-                                    </MudItem>
-                                </MudGrid>
-                            </MudCard>
-                        </MudItem>
-                        <MudItem xs="12" sm="12" md="12" Class="py-1" Style="margin-top: 10px;">
-                            <MudCard class="mt-2" Style="padding: 10px;">
-                                @if (Basic_Switch1)
-                                {
-                                    <MudTextField @bind-Value="TextValue" Label="Pistas" Variant="Variant.Outlined" Lines="2"></MudTextField>
-                                }
+                                            <MudItem xs="12" md="12" Class="pl-5">
+                                                <MudRadioGroup @bind-SelectedOption="@Placement">
+                                                    <MudRadio class="radio-buttons" Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
+                                                        <div class="d-flex">
+                                                            <MudTextField @bind-Value="TextValue" Label="Alternativa 1" Variant="Variant.Outlined"></MudTextField>
+                                                            <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
+                                                        </div>
+                                                    </MudRadio>
+                                                    <MudRadio class="radio-buttons" Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
+                                                        <div class="d-flex">
+                                                            <MudTextField @bind-Value="TextValue" Label="Alternativa 2" Variant="Variant.Outlined"></MudTextField>
+                                                            <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
+                                                        </div>
+                                                    </MudRadio>
+                                                    <MudRadio class="radio-buttons" Style="width: 100%;" Color="Color.Primary" Option="@(Placement.Top)">
+                                                        <div class="d-flex">
+                                                            <MudTextField @bind-Value="TextValue" Label="Alternativa 3" Variant="Variant.Outlined"></MudTextField>
+                                                            <MudIconButton Icon="@Icons.Filled.MoreVert" Size="Size.Medium" />
+                                                        </div>
+                                                    </MudRadio>
+                                                </MudRadioGroup>
+                                            </MudItem>
+                                        </MudGrid>
+                                    </MudCard>
+                                </MudItem>
+                                 @if (Basic_Switch1 || Basic_Switch2 || Basic_Switch3)
+                                    {
+                                        <MudItem xs="12" sm="12" md="12" Class="py-1" Style="margin-top: 10px;">
+                                            <MudCard class="mt-2" Style="padding: 10px;">
+                                                @if (Basic_Switch1)
+                                                {
+                                                    <div>
+                                                        <MudTextField @bind-Value="TextValue" Label="Pistas" Variant="Variant.Outlined" Lines="2"></MudTextField>
+                                                    </div>
+                                                }
 
-                                @if (Basic_Switch2)
-                                {
-                                    <MudTextField @bind-Value="TextValue" Label="Solucionario" Variant="Variant.Outlined" Lines="2"></MudTextField>
-                                }
+                                                @if (Basic_Switch2)
+                                                {
+                                                        <MudTextField @bind-Value="TextValue" Label="Solucionario" Variant="Variant.Outlined" Lines="2"></MudTextField>
+                                                }
 
-                                @if (Basic_Switch3)
-                                {
-                                    <MudTextField @bind-Value="TextValue" Label="Personalizar mensaje" Variant="Variant.Outlined" Lines="2"></MudTextField>
-                                }
-                            </MudCard>
-                        </MudItem>
-                    </MudGrid>
-                </MudDrawerContainer>
-            </MudContainer>
-        </MudMainContent>
+                                                @if (Basic_Switch3)
+                                                {
+                                                        <MudTextField @bind-Value="TextValue" Label="Personalizar mensaje" Variant="Variant.Outlined" Lines="2"></MudTextField>
+                                                }
+                                            </MudCard>
+                                        </MudItem>
+                                  }
+
+                            </MudGrid>
+                    </MudContainer>
+                </MudItem>
+
+                <MudItem Class="main-content-section" xs="2" sm="3" md="3" lg="3" xl="3" Style="background-color: #EEEEEE; overflow-y: hidden;">
+                   <MudList Clickable="false" Dense="false" DisableGutters="false" Style="height: 100vh;">
+                        <MudListItem>
+                            <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-bold">Ayuda antes de responder</MudText>
+                            <MudGrid>
+                                <MudItem xs="8" md="8" lg="8" xl="8" xxl="8" Class="d-flex align-items-center">
+                                    <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-normal">Pistas</MudText>
+                                </MudItem>
+                                <MudItem xs="4" md="4" lg="4" xl="4" xxl="4">
+                                    <MudSwitch @bind-Checked="@Basic_Switch1" Color="Color.Primary" />
+                                </MudItem>
+                            </MudGrid>
+                        </MudListItem>
+                        <hr style="margin: 0px auto; width: 90%;" />
+                        <MudListItem>
+                            <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-bold">Retroalimentación de respuesta incorrecta</MudText>
+                            <MudGrid>
+                                <MudItem xs="8" md="8" lg="8" xl="8" xxl="8" Class="d-flex align-items-center">
+                                    <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-normal">Solucionario</MudText>
+                                </MudItem>
+                                <MudItem xs="4" md="4" lg="4" xl="4" xxl="4">
+                                    <MudSwitch @bind-Checked="@Basic_Switch2" Color="Color.Primary" />
+                                </MudItem>
+                            </MudGrid>
+                        </MudListItem>
+                        <hr style="margin: 0px auto; width: 90%;" />
+                        <MudListItem>
+                            <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-bold">Retroalimentación de respuesta correcta</MudText>
+                            <MudGrid>
+                                <MudItem xs="8" md="8" lg="8" xl="8" xxl="8" Class="d-flex align-items-center">
+                                    <MudText Typo="Typo.subtitle2" Style="color: black;" Class="fw-normal">Personalizar mensaje</MudText>
+                                </MudItem>
+                                <MudItem xs="4" md="4" lg="4" xl="4" xxl="4">
+                                    <MudSwitch @bind-Checked="@Basic_Switch3" Color="Color.Primary" />
+                                </MudItem>
+                            </MudGrid>
+                        </MudListItem>
+                    </MudList>
+                </MudItem>
+            </MudGrid>
     </MudLayout>
 </div>
 
@@ -162,34 +170,75 @@
 
     public class DrawerItem
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string SubTitle { get; set; }
         public string Time { get; set; }
         public string SelectorName { get; set; }
-        public string CardStyles = "border-radius: 10px; width: 80%;";
+        public bool Selected { get; set; }
         public string TitleStyles = "font-weight: 400;";
         public string SubTitleStyles = "color: #747474; font-weight: 400;";
         public string SelectorStyles = "border-radius: 30px; max-height: 25px;";
 
 
-        public DrawerItem(string title, string subtitle, string time, string selector, string cardStyles, string titleStyles, string subStyles, string selectorStyles)
+        public DrawerItem(int id, string title, string subtitle, string time, string selector, string selectorStyles)
         {
+            this.Id = id;
             this.Title = title;
             this.SubTitle = subtitle;
             this.Time = time;
             this.SelectorName = selector;
-            this.CardStyles += cardStyles;
-            this.TitleStyles += titleStyles;
-            this.SubTitleStyles += subStyles;
+            this.Selected = false;
             this.SelectorStyles += selectorStyles;
         }
     }
 
     public List<DrawerItem> drawerItems = new List<DrawerItem>
     {
-        new DrawerItem("Recurso", "La caperucita roja", "17", "Activo", "", "", "", "background-color: #C7F4CB;"),
-        new DrawerItem("Selección múltiple", "Nombre de la actividad", "17", "Por validar", "background-color: #6600FF;", "color: white;", "color: white;", "background-color: #C7F4CB;"),
-        new DrawerItem("Etiquetar", "Nombre de la actividad", "17", "Inactivo", "", "", "", "background-color: #FFD5D2;")
+        new DrawerItem(0, "Recurso", "La caperucita roja", "17", "Activo", "background-color: #C7F4CB;"),
+        new DrawerItem(1, "Selección múltiple", "Nombre de la actividad", "17", "Por validar", "background-color: #DFF9FF;"),
+        new DrawerItem(2, "Completar arrastrando", "Nombre de la actividad", "17", "Borrador", "background-color: #EAEAEA;"),
+        new DrawerItem(3, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;")
     };
 
+    public void selectCardItem(DrawerItem item) {
+
+        foreach(DrawerItem dItem in this.drawerItems) {
+            dItem.Selected = false;
+        }
+        item.Selected = !item.Selected;
+    }
+
 }
+
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .main-content-section {
+        height: 91vh;
+        overflow-y: scroll;
+    }
+
+    .aside-left-header {
+        display: flex;
+        justify-content: space-between;
+        width: 88%;
+        margin: 0px auto 20px;
+    }
+
+    .radio-buttons > span:nth-child(2) {
+        width: 100%;
+        height: 70px;
+    }
+
+    .mud-input.mud-input-outlined .mud-input-outlined-border {
+        border-radius: 10px;
+    }
+
+    .mud-paper {
+        border-radius: 10px;
+    }
+
+</style>

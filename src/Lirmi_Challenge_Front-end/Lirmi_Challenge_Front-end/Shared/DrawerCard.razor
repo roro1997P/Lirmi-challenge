@@ -1,24 +1,41 @@
 ﻿
-    <MudCard Style="@CardStyles" Elevation="0" Outlined>
-        <MudCardContent Class="pl-2">
-            <MudText Typo="Typo.subtitle2" Class="fw-bold mb-2" Style="@TitleStyles">@Title</MudText>
-            <MudText Typo="Typo.body2" Class="mb-2" Style="@SubTitleStyles">@SubTitle</MudText>
-            <div class="d-flex justify-content-between align-items-center">
-                <MudText Typo="Typo.body2" Style="@SubTitleStyles">@Time min</MudText>
+@{
+    string CardBgStyleString = "bg-color-not-selected";
+    string CardTitleStyleString = "title-not-selected";
+    string CardSubTitleStyleString = "subtitle-not-selected";
+
+    if (Selected) {
+        CardBgStyleString = "bg-color-selected";
+        CardTitleStyleString = "title-selected";
+        CardSubTitleStyleString = "subtitle-selected";
+    }
+    else {
+        CardBgStyleString = "bg-color-not-selected";
+        CardTitleStyleString = "title-not-selected";
+        CardSubTitleStyleString = "subtitle-not-selected";
+    }
+}    
+
+<MudCard Class="@CardBgStyleString" Elevation="0" Outlined>
+    <MudCardContent Class="pl-2">
+        <MudText Typo="Typo.subtitle2" Class="@CardTitleStyleString">@Title</MudText>
+        <MudText Typo="Typo.body2" Class="@CardSubTitleStyleString">@SubTitle</MudText>
+        <div class="d-flex justify-content-between align-items-center">
+            <MudText Typo="Typo.body2" Class="@CardSubTitleStyleString">@Time min</MudText>
                  
-                <MudButton 
-                    Variant="Variant.Filled" 
-                    Size="Size.Small"
-                    Class="px-1"
-                    Style="@SelectorStyles"
-                    EndIcon="@Icons.Filled.KeyboardArrowDown"
-                    DisableElevation
-                >
-                    <MudText Typo="Typo.caption" Class="ml-2" Style="font-weight: 600">@SelectorName</MudText>
-                </MudButton>
-            </div>
-        </MudCardContent>
-    </MudCard>
+            <MudButton 
+                Variant="Variant.Filled" 
+                Size="Size.Small"
+                Class="px-1"
+                Style="@SelectorStyles"
+                EndIcon="@Icons.Filled.KeyboardArrowDown"
+                DisableElevation
+            >
+                <MudText Typo="Typo.caption" Class="ml-2" Style="font-weight: 600">@SelectorName</MudText>
+            </MudButton>
+        </div>
+    </MudCardContent>
+</MudCard>
 
 @code {
     [Parameter]
@@ -30,11 +47,46 @@
     [Parameter]
     public string SelectorName { get; set; }
     [Parameter]
-    public string CardStyles { get; set; }
+    public bool Selected { get; set; }
     [Parameter]
     public string TitleStyles { get; set; }
     [Parameter]
     public string SubTitleStyles { get; set; }
     [Parameter]
     public string SelectorStyles { get; set; }
+
 }
+
+<style>
+    .bg-color-selected {
+        border-radius: 10px; width: 80%;
+        background-color: #6600FF;
+    }
+    .title-selected {
+        color: white;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+    .subtitle-selected {
+        color: white;
+        font-weight: 400;
+        margin-bottom: 12px;
+    }
+
+
+    .bg-color-not-selected {
+        border-radius: 10px; width: 80%;
+        background-color: white;
+    }
+    .title-not-selected {
+        color: black;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+    .subtitle-not-selected {
+        color: #979797;
+        font-weight: 400;
+        margin-bottom: 12px;
+    }
+
+</style>
