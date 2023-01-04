@@ -13,6 +13,11 @@
 
             <MudGrid Class="mt-0">
                 <MudItem Class="main-content-section" xs="5" sm="4" md="3" lg="3" xl="3" Style="background-color: #EEEEEE;">
+                    <div class="aside-left-header">
+                        <MudText Typo="Typo.h6" Style="color: black;" Class="fw-bold">Experiencias</MudText>
+                        <MudIconButton Size="Size.Small" Variant="Variant.Filled" Icon="@Icons.Filled.Add" Style="color: black; background-color: white" Class="ml-2" />
+                    </div>
+
                     @{
                         int i = 1;
                     }
@@ -84,13 +89,15 @@
                                         </MudGrid>
                                     </MudCard>
                                 </MudItem>
-                                    @if (Basic_Switch1 || Basic_Switch2 || Basic_Switch3)
+                                 @if (Basic_Switch1 || Basic_Switch2 || Basic_Switch3)
                                     {
                                         <MudItem xs="12" sm="12" md="12" Class="py-1" Style="margin-top: 10px;">
                                             <MudCard class="mt-2" Style="padding: 10px;">
                                                 @if (Basic_Switch1)
                                                 {
+                                                    <div>
                                                         <MudTextField @bind-Value="TextValue" Label="Pistas" Variant="Variant.Outlined" Lines="2"></MudTextField>
+                                                    </div>
                                                 }
 
                                                 @if (Basic_Switch2)
@@ -104,7 +111,8 @@
                                                 }
                                             </MudCard>
                                         </MudItem>
-                                    }
+                                  }
+
                             </MudGrid>
                     </MudContainer>
                 </MudItem>
@@ -188,14 +196,9 @@
     public List<DrawerItem> drawerItems = new List<DrawerItem>
     {
         new DrawerItem(0, "Recurso", "La caperucita roja", "17", "Activo", "background-color: #C7F4CB;"),
-        new DrawerItem(1, "Selección múltiple", "Nombre de la actividad", "17", "Por validar", "background-color: #C7F4CB;"),
-        new DrawerItem(2, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;"),
-        new DrawerItem(3, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;"),
-        new DrawerItem(4, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;"),
-        new DrawerItem(5, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;"),
-        new DrawerItem(6, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;"),
-        new DrawerItem(7, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;"),
-        new DrawerItem(8, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;"),
+        new DrawerItem(1, "Selección múltiple", "Nombre de la actividad", "17", "Por validar", "background-color: #DFF9FF;"),
+        new DrawerItem(2, "Completar arrastrando", "Nombre de la actividad", "17", "Borrador", "background-color: #EAEAEA;"),
+        new DrawerItem(3, "Etiquetar", "Nombre de la actividad", "17", "Inactivo", "background-color: #FFD5D2;")
     };
 
     public void selectCardItem(DrawerItem item) {
@@ -218,6 +221,13 @@
         overflow-y: scroll;
     }
 
+    .aside-left-header {
+        display: flex;
+        justify-content: space-between;
+        width: 88%;
+        margin: 0px auto 20px;
+    }
+
     .radio-buttons > span:nth-child(2) {
         width: 100%;
         height: 70px;
@@ -226,4 +236,9 @@
     .mud-input.mud-input-outlined .mud-input-outlined-border {
         border-radius: 10px;
     }
+
+    .mud-paper {
+        border-radius: 10px;
+    }
+
 </style>
